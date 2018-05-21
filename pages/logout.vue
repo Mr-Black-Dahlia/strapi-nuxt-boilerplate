@@ -6,7 +6,7 @@
        logging out
       </h1>
       <h2 class="subtitle">
-        loggin the user out
+        logging the user out
       </h2>
     </div>
   </section>
@@ -18,6 +18,9 @@ export default {
   components: {
     AppLogo
   },
+  fetch(ctx) {
+ ctx.app.$auth
+},
   data() {
   this.$auth.logout();
   }
