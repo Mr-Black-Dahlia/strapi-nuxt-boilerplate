@@ -1,6 +1,6 @@
-# logintest
+# Strap-Nuxt-boilerplate
 
-> Nuxt.js project
+> Quickly connect your Strapi API to Nuxt
 
 ## Build Setup
 
