@@ -6,7 +6,7 @@
         user page
       </h1>
       <h2 class="subtitle">
-        Hello {{$auth.username}}!
+        Hello {{$auth.user}}!
       </h2>
   
       <div class="links">
@@ -21,6 +21,10 @@
 import AppLogo from '~/components/AppLogo.vue'
 
 export default {
+async asyncData (ctx) {
+    let { data } = await ctx.app.$axios.get('/user' )
+    return { username: data.username }
+  },
   components: {
     AppLogo
   }

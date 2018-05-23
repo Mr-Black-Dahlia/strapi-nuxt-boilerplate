@@ -6,7 +6,7 @@
         about page
       </h1>
       <h2 class="subtitle">
-        Hello {{$auth.$state.user.username}}!
+        Hello {{$auth.user.username}}!
       </h2>
       <p>{{ $auth.token }}</p>
       <div class="links">
