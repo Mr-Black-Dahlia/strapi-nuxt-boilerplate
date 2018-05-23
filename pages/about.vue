@@ -6,18 +6,13 @@
         about page
       </h1>
       <h2 class="subtitle">
-        this page is supposed to be hidden
+        Hello {{$auth.$state.user.username}}!
       </h2>
-      <!--<div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>-->
+      <p>{{ $auth.token }}</p>
+      <div class="links">
+        <nuxt-link to="/" class="button--green">Home</nuxt-link>
+        <button class="button--green" @click="$auth.logout()">Logout</button>
+      </div>
     </div>
   </section>
 </template>

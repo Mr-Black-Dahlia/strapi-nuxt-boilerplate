@@ -37,6 +37,7 @@ module.exports = {
   },
   modules: [
   '@nuxtjs/axios',
+  '@nuxtjs/toast',
   '@nuxtjs/auth'
 ],
 
@@ -48,7 +49,7 @@ auth: {
         login: { url: '/auth/local', method: 'post', propertyName: 'jwt' },
         logout: null,
         register: { url: '/auth/local/register', method: 'post'},
-        user: { url: '/user/me', method: 'get', propertyName: 'id' }
+        user: { url: '/user/me', method: 'get', propertyName: '_id'}
       },
       // tokenRequired: true,
       // tokenType: 'bearer',
@@ -60,5 +61,8 @@ axios: {
 },
 router: {
   middleware: ['auth']
+},
+toast: {
+  position: 'top-center'
 }
 }
