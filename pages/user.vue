@@ -6,7 +6,7 @@
         user page
       </h1>
       <h2 class="subtitle">
-        Hello {{$auth.user}}!
+        Hello {{$auth.user.username}}!
       </h2>
   
       <div class="links">
@@ -24,6 +24,11 @@ export default {
 async asyncData (ctx) {
     let { data } = await ctx.app.$axios.get('/user' )
     return { username: data.username }
+  },
+  head () {
+    return {
+      title: 'Users'
+    }
   },
   components: {
     AppLogo

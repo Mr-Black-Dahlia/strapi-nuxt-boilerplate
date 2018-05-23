@@ -8,6 +8,7 @@
       <h2 class="subtitle">
         Hello {{$auth.user.username}}!
       </h2>
+      <p>Your email is {{$auth.user.email}}</p>
       <p>{{ $auth.token }}</p>
       <div class="links">
         <nuxt-link to="/" class="button--green">Home</nuxt-link>

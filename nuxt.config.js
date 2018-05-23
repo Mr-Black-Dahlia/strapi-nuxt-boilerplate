@@ -48,7 +48,7 @@ auth: {
       endpoints: {
         login: { url: '/auth/local', method: 'post', propertyName: 'jwt' },
         register: { url: '/auth/local/register', method: 'post'},
-        user: { url: '/user/me', method: 'get', propertyName: null/undefined},
+        user: { url: '/user/me', method: 'get', propertyName: null},
         logout: null
       },
       // tokenRequired: true,
