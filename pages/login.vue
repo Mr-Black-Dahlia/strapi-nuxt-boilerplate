@@ -5,9 +5,11 @@
 <form v-if="!$auth.user" @submit.prevent="login">
       <p class="error" v-if="formError">{{ formError }}</p>
       <p><i>To login, use <b>test@test.com</b> as username and <b>test123</b> as password.</i></p>
-      <p>Username: <input type="text" v-model="formUsername" name="username" /></p>
-      <p>Password: <input type="password" v-model="formPassword" name="password" /></p>
-      <button type="submit">Login</button>
+      <p>Email: <input v-validate="'required|email'" type="text" v-model="formUsername" name="username" /></p>
+      <span v-show="errors.has('username')">{{ errors.first('username') }}</span>
+      <p>Password: <input v-validate="'required'" type="password" v-model="formPassword" name="password" /></p>
+      <span v-show="errors.has('password')">{{ errors.first('password') }}</span>
+      <button :disabled="errors.any()" type="submit">Login</button>
     </form>
     <div v-else>
       Hello {{ $auth.user.firstName}}!
@@ -15,7 +17,7 @@
       <p><i>You can also refresh this page, you'll still be connected!</i></p>
       <button @click="$auth.logout()">Logout</button>
     </div>
-    <p><nuxt-link to="/">return to home</nuxt-link></p>
+    <p><nuxt-link to="/">return to home</nuxt-link> | <nuxt-link to="/register">register</nuxt-link></p>
   </div>
   </section>
 </template>

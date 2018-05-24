@@ -38,7 +38,9 @@ module.exports = {
   modules: [
   '@nuxtjs/axios',
   '@nuxtjs/toast',
-  '@nuxtjs/auth'
+  '@nuxtjs/auth',
+  'nuxt-validate'
+  
 ],
 
 auth: {

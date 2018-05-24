@@ -5,17 +5,12 @@
 <form v-if="!$auth.user" @submit.prevent="register">
       <p class="error" v-if="formError">{{ formError }}</p>
       <p>Please register</p>
-      <p>Username: <input v-validate="{ required: true, min: 6 }" type="text" v-model="formUsername" name="username" /></p>
-      <p>Email: <input v-validate="'required|email'" type="text" v-model="formEmail" name="email" /></p>
-      <!-- If it has an email error, display the first message associated with it. -->
-        <span v-show="errors.has('email')">{{ errors.first('email') }}</span>
-      <p>Password: <input v-validate="{ required: true, min: 6 }" type="password" v-model="formPassword" name="password" /></p>
-      <p>Confirm Password: <input v-validate="{ required: true, min: 6, confirmed:'password' }" type="password" name="confirmPassword" /></p>
-      <!-- If it has an email error, display the first message associated with it. -->
-        <span v-show="errors.has('password')">{{ errors.first('password') }}</span>
-        <span v-show="errors.has('confirmPassword')">{{ errors.first('confirmPassword') }}</span>
-      <button :disabled="errors.any()" type="submit">Register</button>
+      <p>Username: <input type="text" v-model="formUsername" name="username" /></p>
+      <p>Email: <input type="text" v-model="formEmail" name="email" /></p>
+      <p>Password: <input type="password" v-model="formPassword" name="password" /></p>
+      <button type="submit">Register</button>
     </form>
+
 
     <p><nuxt-link to="/">return to home</nuxt-link></p>
   </div>
@@ -27,6 +22,7 @@ import AppLogo from '~/components/AppLogo.vue'
 import axios from 'axios'
 import toast from '@nuxtjs/toast'
 
+
 export default {
   auth: false,
   components: {
@@ -37,12 +33,13 @@ export default {
       formError: null,
       formUsername: '',
       formPassword: '',
-      formEmail:''
+      formEmail:'',
+      username:'',
+      password:'',
     }
   },
   methods: {
 async register(data) {
-  
   try {
    await axios.post('http://localhost:1337/auth/local/register', {
     username: this.formUsername,
@@ -68,6 +65,16 @@ async register(data) {
   }
   }
 
+  },
+  validations: {
+    username: {
+      required,
+      minLength: minLength(4)
+    },
+    password: {
+      required,
+      minLength: minLength(4)
+    }
   }
 }
 </script>
