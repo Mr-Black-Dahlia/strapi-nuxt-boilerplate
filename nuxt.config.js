@@ -39,7 +39,8 @@ module.exports = {
   '@nuxtjs/axios',
   '@nuxtjs/toast',
   '@nuxtjs/auth',
-  'nuxt-validate'
+  'nuxt-validate',
+  'bootstrap-vue/nuxt'
   
 ],
 

@@ -8,12 +8,12 @@
       <p>Username: <input v-validate="{ required: true, min: 6 }" type="text" v-model="formUsername" name="username" /></p>
       <p>Email: <input v-validate="'required|email'" type="text" v-model="formEmail" name="email" /></p>
       <!-- If it has an email error, display the first message associated with it. -->
-        <span v-show="errors.has('email')">{{ errors.first('email') }}</span>
+        <span v-show="errors.has('email')"><b-badge variant="danger">{{ errors.first('email') }}</b-badge></span>
       <p>Password: <input v-validate="{ required: true, min: 6 }" type="password" v-model="formPassword" name="password" /></p>
+      <span v-show="errors.has('password')"><b-badge variant="danger">{{ errors.first('password') }}</b-badge></span><br/>
       <p>Confirm Password: <input v-validate="{ required: true, min: 6, confirmed:'password' }" type="password" name="confirmPassword" /></p>
       <!-- If it has an email error, display the first message associated with it. -->
-        <span v-show="errors.has('password')">{{ errors.first('password') }}</span>
-        <span v-show="errors.has('confirmPassword')">{{ errors.first('confirmPassword') }}</span>
+        <span v-show="errors.has('confirmPassword')"><b-badge variant="danger">{{ errors.first('confirmPassword') }}</b-badge></span><br/>
       <button :disabled="errors.any()" type="submit">Register</button>
     </form>
 

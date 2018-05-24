@@ -6,9 +6,9 @@
       <p class="error" v-if="formError">{{ formError }}</p>
       <p><i>To login, use <b>test@test.com</b> as username and <b>test123</b> as password.</i></p>
       <p>Email: <input v-validate="'required|email'" type="text" v-model="formUsername" name="username" /></p>
-      <span v-show="errors.has('username')">{{ errors.first('username') }}</span>
+      <span v-show="errors.has('username')"><b-badge variant="danger">{{ errors.first('username') }}</b-badge></span>
       <p>Password: <input v-validate="'required'" type="password" v-model="formPassword" name="password" /></p>
-      <span v-show="errors.has('password')">{{ errors.first('password') }}</span>
+      <span v-show="errors.has('password')"><b-badge variant="danger">{{ errors.first('password') }}</b-badge></span>
       <button :disabled="errors.any()" type="submit">Login</button>
     </form>
     <div v-else>
