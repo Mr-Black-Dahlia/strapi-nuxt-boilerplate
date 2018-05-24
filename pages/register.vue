@@ -2,19 +2,15 @@
   <section class="container">
     <div>
       <app-logo/>
-<form v-if="!$auth.user" @submit.prevent="login">
+<form v-if="!$auth.user" @submit.prevent="register">
       <p class="error" v-if="formError">{{ formError }}</p>
-      <p><i>To login, use <b>test@test.com</b> as username and <b>test123</b> as password.</i></p>
+      <p>Please register</p>
       <p>Username: <input type="text" v-model="formUsername" name="username" /></p>
+      <p>Email: <input type="text" v-model="formEmail" name="email" /></p>
       <p>Password: <input type="password" v-model="formPassword" name="password" /></p>
-      <button type="submit">Login</button>
+      <button type="submit">Register</button>
     </form>
-    <div v-else>
-      Hello {{ $auth.user.firstName}}!
-      <pre>I am the secret content, I am shown only when the user is connected.</pre>
-      <p><i>You can also refresh this page, you'll still be connected!</i></p>
-      <button @click="$auth.logout()">Logout</button>
-    </div>
+
     <p><nuxt-link to="/">return to home</nuxt-link></p>
   </div>
   </section>
@@ -22,6 +18,8 @@
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
+import axios from 'axios'
+import toast from '@nuxtjs/toast'
 
 export default {
   auth: false,
@@ -32,29 +30,37 @@ export default {
     return {
       formError: null,
       formUsername: '',
-      formPassword: ''
+      formPassword: '',
+      formEmail:''
     }
   },
   methods: {
-    async login() {
-      try {
-        // this.$toast.show('Logging in...', { duration: 500})
-        await this.$auth.loginWith('local', {
+async register(data) {
+  try {
+   await axios.post('http://localhost:1337/auth/local/register', {
+    username: this.formUsername,
+    password: this.formPassword,
+    email: this.formEmail
+  }).then(response => {
+    console.log(response);
+    this.$auth.setToken('local', response.data.jwt);
+  })
+  this.$toast.success('Success! You have been registered.', {duration: 2000});
+  await this.$auth.loginWith('local', {
   data: {
     identifier: this.formUsername,
     password: this.formPassword
   }
   
 })
-        this.$toast.success('Success! Logging you in now.', {duration: 2000})
-        this.formUsername = ''
-        this.formPassword = ''
-        this.formError = null
-      } catch (e) {
-        this.$toast.error('The login information is in correct. Please try again.', {duration: 2000})
-        // this.formError = e.message
-      }
-    }
+
+  
+  } catch(e){
+    console.log(e);
+     this.$toast.error(`Hmmm... Something isn't right. Did you already register?`, {duration: 2000});
+  }
+  }
+
   }
 }
 </script>
