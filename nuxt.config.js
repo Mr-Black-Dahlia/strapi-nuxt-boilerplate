@@ -70,11 +70,12 @@ toast: {
   position: 'top-center'
 },
 sentry: {
-  public_key: '275cd483366843c18949d8a56634efe2',
-  private_key: 'e098ba5ed4604d95aa077e858f1b5bdb',
-  project_id: '1213022',
+  public_key: '',
+  private_key: '',
+  project_id: '',
   config: {
     // Additional config
+    
   },
 }
 }
