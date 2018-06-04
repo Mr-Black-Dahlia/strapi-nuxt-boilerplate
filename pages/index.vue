@@ -14,8 +14,9 @@
           target=""
           class="button--grey">Documentation</a>
         <nuxt-link to="/about" class="button--green">About</nuxt-link>
+        
         <template v-if="$auth.$state.loggedIn">
-          
+          <nuxt-link to="/user" class="button--green">Profile</nuxt-link>
           <b-btn class="button--green" variant="danger" @click="$auth.logout()">Logout</b-btn>
         </template>
         <template v-if="$auth.$state.loggedIn === false">
