@@ -40,7 +40,8 @@ module.exports = {
   '@nuxtjs/toast',
   '@nuxtjs/auth',
   'nuxt-validate',
-  'bootstrap-vue/nuxt'
+  'bootstrap-vue/nuxt',
+  '@nuxtjs/sentry'
   
 ],
 
@@ -67,5 +68,14 @@ router: {
 },
 toast: {
   position: 'top-center'
+},
+sentry: {
+  public_key: '',
+  private_key: '',
+  project_id: '',
+  config: {
+    // Additional config
+    
+  },
 }
 }
