@@ -1,4 +1,4 @@
-# Strap-Nuxt-boilerplate
+# Strapi-Nuxt-boilerplate
 
 > Quickly connect your Strapi API to Nuxt
 
